@@ -15,8 +15,14 @@ head(exprData)
 # 如果基因ID有版本号（如 ENSG000001.1），需要去掉版本号
 exprData[, 1] <- gsub("\\..*", "", exprData[, 1])
 
+# 删除表达量全为0的行
+# 假设表达量列从第二列开始（第一列是基因 ID）
+exprData <- exprData[rowSums(exprData[, -1] != 0) > 0, ]
+
+# 检查数据结构
+head(exprData)
+
 # 2. 连接到 Ensembl 数据库
-# ensembl <- useMart("ensembl", dataset = "hsapiens_gene_ensembl")  # 替换为其他物种时修改 dataset
 ensembl <- useMart("ensembl", 
                    dataset = "hsapiens_gene_ensembl", 
                    host = "https://asia.ensembl.org")
