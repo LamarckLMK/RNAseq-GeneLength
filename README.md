@@ -1,1 +1,1 @@
-该程序从表达矩阵中读取基因表达数据、通过连接 Ensembl 数据库获取基因注释信息并计算基因长度，随后将其添加到表达矩阵中。
+A short R script used to add gene length in your gene_count file(Based on Ensemble DB)
